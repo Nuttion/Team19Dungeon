@@ -5,6 +5,7 @@ using UnityEngine.AI;
 
 public class Enemy : MonoBehaviour {
 
+    public bool melee;
     NavMeshAgent agent;
 
     public GameObject player;
@@ -70,17 +71,26 @@ public class Enemy : MonoBehaviour {
                     transform.rotation = Quaternion.Lerp(transform.rotation, targetRotation, adjRotSpeed);
 
                     //Move towards player
-                    if (Vector3.Distance(player.transform.position, transform.position) >= 5) {
+                    if (Vector3.Distance(player.transform.position, transform.position) >= 1) {
                         agent.SetDestination(player.transform.position);
                     }
+
                     //Stop if close to player
-                    else if (Vector3.Distance(player.transform.position, transform.position) < 5) {
-                        agent.SetDestination(transform.position);
+                    else if(!melee)
+                    {
+                        if (Vector3.Distance(player.transform.position, transform.position) < 5)
+                        {
+                            agent.SetDestination(transform.position);
+                        }
                     }
+                    
 
                     //Fire Laser
                     if (Time.time > laserTimer) {
-                        Instantiate(laser, laserMuzzle.transform.position, laserMuzzle.transform.rotation);
+                        if (!melee)
+                        {
+                            Instantiate(laser, laserMuzzle.transform.position, laserMuzzle.transform.rotation);
+                        }
                         laserTimer = Time.time + laserTime;
                     }
                 }
