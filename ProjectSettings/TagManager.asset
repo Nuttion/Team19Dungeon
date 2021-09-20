@@ -5,6 +5,11 @@ TagManager:
   serializedVersion: 2
   tags:
   - Shootable
+  - Ground
+  - Environment
+  - GameManager
+  - Enemy
+  - Door
   layers:
   - Default
   - TransparentFX
