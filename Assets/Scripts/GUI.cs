@@ -26,8 +26,8 @@ public class GUI : MonoBehaviour {
         }
         else if (player) {
             healthbar.value = player.GetComponent<PlayerAvatar>().health;
-            ammoText.text = "Ammo: " + player.GetComponent<PlayerAvatar>().ammo.ToString();
-            fuelText.text = "Fuel: " + player.GetComponent<PlayerAvatar>().fuel.ToString();
+            ammoText.text = "Mana: " + player.GetComponent<PlayerAvatar>().ammo.ToString();
+            fuelText.text = "Armour: " + player.GetComponent<PlayerAvatar>().fuel.ToString();
         }
 
 
