@@ -25,7 +25,7 @@ public class KeyScript : MonoBehaviour
     {
         if(collision.gameObject.tag == "Key")
         {
-            keyCollected = false;
+            keyCollected = true;
             Destroy(collision.gameObject);
         }
 
