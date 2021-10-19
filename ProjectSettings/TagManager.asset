@@ -10,6 +10,8 @@ TagManager:
   - GameManager
   - Enemy
   - Door
+  - Key
+  - EndDoor
   layers:
   - Default
   - TransparentFX
