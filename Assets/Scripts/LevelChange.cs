@@ -28,7 +28,7 @@ public class LevelChange : MonoBehaviour
                 SceneManager.LoadScene("Level 2");
             }
 
-            else if (nextLevel == 2)
+            else if (nextLevel == 3)
             {
                 SceneManager.LoadScene("Level 3");
             }
