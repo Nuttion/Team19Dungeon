@@ -32,6 +32,10 @@ public class LevelChange : MonoBehaviour
             {
                 SceneManager.LoadScene("Level 3");
             }
+            else if (nextLevel == 4)
+            {
+                SceneManager.LoadScene("Boss Level");
+            }
         }
     }
 }

@@ -15,7 +15,7 @@ public class GameManager : MonoBehaviour {
     string thisLevel;
     public string nextLevel;
 
-    GameObject light;
+    public GameObject dLight;
 
     // Awake Checks - Singleton setup
     void Awake() {
@@ -36,8 +36,8 @@ public class GameManager : MonoBehaviour {
     void Start () {
         thisLevel = SceneManager.GetActiveScene().name;
 
-        light = GameObject.Find("Directional Light");
-        light.SetActive(false);
+        dLight = GameObject.Find("Directional Light");
+        dLight.SetActive(false);
 	}
 	
 	// Update is called once per frame
