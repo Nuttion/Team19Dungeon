@@ -74,7 +74,7 @@ MonoBehaviour:
   health: 100
   moveSpeed: 7
   bullet: {fileID: 1783394662479734, guid: 62530b35f6cbb6e4b9f4c31192a041f7, type: 3}
-  ammo: 500
+  ammo: 200
   fireDamage: {fileID: 576544407264912841, guid: f21a5f4e0dc322b409ef14f28fc56751,
     type: 3}
   fuel: 50
