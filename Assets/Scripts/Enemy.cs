@@ -5,8 +5,6 @@ using UnityEngine.AI;
 
 public class Enemy : MonoBehaviour {
 
-    Animator skeletonAnimator;
-
     public bool melee;
     NavMeshAgent agent;
 
@@ -16,8 +14,6 @@ public class Enemy : MonoBehaviour {
 
     public float agroRange = 10.0f;
     public float damage = 5.0f;
-    public bool playerSeen;
-    public bool playerHit;
 
     //Rotation vars
     public float rotationSpeed;
@@ -40,15 +36,10 @@ public class Enemy : MonoBehaviour {
     // Use this for initialization
     void Start () {
         agent = GetComponent<NavMeshAgent>();
-        skeletonAnimator = gameObject.GetComponent<Animator>();
-        playerSeen = false;
-        playerHit = false;
-}
+    }
 
     // Update is called once per frame
     void Update() {
-
-        Debug.Log(playerSeen);
 
         Behaviour();
 
@@ -72,13 +63,6 @@ public class Enemy : MonoBehaviour {
                 //If Raycast hits player
                 if (hit.transform.tag == "Player")
                 {
-
-                    playerSeen = true;
-
-                    if (playerSeen == true)
-                    {
-                        skeletonAnimator.SetBool("playerSeen", true);
-                    }
 
                     Debug.DrawLine(transform.position, player.transform.position, Color.red);
 
@@ -112,18 +96,7 @@ public class Enemy : MonoBehaviour {
                         }
                         laserTimer = Time.time + laserTime;
                     }
-                }
-
-                else
-                {
-                    playerSeen = false;
-
-                    if (playerSeen == false)
-                    {
-                        skeletonAnimator.SetBool("playerSeen", false);
-                    }
-                }
-                    
+                }          
                     
             }
         }
@@ -131,8 +104,6 @@ public class Enemy : MonoBehaviour {
 
 
     private void OnCollisionStay(Collision collision) {
-
-        skeletonAnimator.SetBool("playerHit", true);
 
         if (collision.transform.tag == "Player" && Time.time > damageTimer) {
             collision.transform.GetComponent<PlayerAvatar>().takeDamage(damage);
