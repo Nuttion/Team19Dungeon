@@ -5,6 +5,8 @@ using UnityEngine.AI;
 
 public class Enemy : MonoBehaviour {
 
+    Animator skeletonAnimator;
+
     public bool melee;
     NavMeshAgent agent;
 
@@ -38,10 +40,15 @@ public class Enemy : MonoBehaviour {
     // Use this for initialization
     void Start () {
         agent = GetComponent<NavMeshAgent>();
-    }
+        skeletonAnimator = gameObject.GetComponent<Animator>();
+        playerSeen = false;
+        playerHit = false;
+}
 
     // Update is called once per frame
     void Update() {
+
+        Debug.Log(playerSeen);
 
         Behaviour();
 
@@ -67,6 +74,11 @@ public class Enemy : MonoBehaviour {
                 {
 
                     playerSeen = true;
+
+                    if (playerSeen == true)
+                    {
+                        skeletonAnimator.SetBool("playerSeen", true);
+                    }
 
                     Debug.DrawLine(transform.position, player.transform.position, Color.red);
 
@@ -103,7 +115,16 @@ public class Enemy : MonoBehaviour {
                 }
 
                 else
+                {
                     playerSeen = false;
+
+                    if (playerSeen == false)
+                    {
+                        skeletonAnimator.SetBool("playerSeen", false);
+                    }
+                }
+                    
+                    
             }
         }
     }
@@ -111,7 +132,7 @@ public class Enemy : MonoBehaviour {
 
     private void OnCollisionStay(Collision collision) {
 
-        playerHit = true;
+        skeletonAnimator.SetBool("playerHit", true);
 
         if (collision.transform.tag == "Player" && Time.time > damageTimer) {
             collision.transform.GetComponent<PlayerAvatar>().takeDamage(damage);
