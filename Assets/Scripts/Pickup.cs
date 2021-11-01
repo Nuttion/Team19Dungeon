@@ -15,16 +15,16 @@ public class Pickup : MonoBehaviour {
 
     // Update is called once per frame
     void Update() {
-        pHealth = player.GetComponent<PlayerAvatar>().health;
+        
     }
 
     public virtual void OnTriggerEnter(Collider other) {
 
-        Debug.Log(pHealth);
+
 
         if (gameObject.name == "Health")
         {
-            if (player.GetComponent<PlayerAvatar>().health < 50)
+            if (player.GetComponent<PlayerAvatar>().health > 50)
             {
                 player.GetComponent<PlayerAvatar>().health += 100 - player.GetComponent<PlayerAvatar>().health;
             }
@@ -33,9 +33,37 @@ public class Pickup : MonoBehaviour {
                 player.GetComponent<PlayerAvatar>().health += 50;
             
 
-            //gameObject.SetActive(false);
+            gameObject.SetActive(false);
         }
 
+        Debug.Log(player.GetComponent<PlayerAvatar>().fuel);
 
+        if (gameObject.name == "Fire")
+        {
+            if (player.GetComponent<PlayerAvatar>().fuel > 20)
+            {
+                player.GetComponent<PlayerAvatar>().fuel += 50 - player.GetComponent<PlayerAvatar>().fuel;
+            }
+
+            else
+                player.GetComponent<PlayerAvatar>().fuel += 30;
+
+
+            gameObject.SetActive(false);
+        }
+
+        if (gameObject.name == "Electric")
+        {
+            if (player.GetComponent<PlayerAvatar>().ammo > 80)
+            {
+                player.GetComponent<PlayerAvatar>().ammo += 200 - player.GetComponent<PlayerAvatar>().ammo;
+            }
+
+            else
+                player.GetComponent<PlayerAvatar>().ammo += 120;
+
+
+            gameObject.SetActive(false);
+        }
     }
 }

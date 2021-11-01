@@ -14,6 +14,8 @@ public class Enemy : MonoBehaviour {
 
     public float agroRange = 10.0f;
     public float damage = 5.0f;
+    public bool playerSeen;
+    public bool playerHit;
 
     //Rotation vars
     public float rotationSpeed;
@@ -61,7 +63,10 @@ public class Enemy : MonoBehaviour {
             if (Physics.Raycast(transform.position, -(transform.position - player.transform.position).normalized, out hit, agroRange)) {
 
                 //If Raycast hits player
-                if (hit.transform.tag == "Player") {
+                if (hit.transform.tag == "Player")
+                {
+
+                    playerSeen = true;
 
                     Debug.DrawLine(transform.position, player.transform.position, Color.red);
 
@@ -71,22 +76,24 @@ public class Enemy : MonoBehaviour {
                     transform.rotation = Quaternion.Lerp(transform.rotation, targetRotation, adjRotSpeed);
 
                     //Move towards player
-                    if (Vector3.Distance(player.transform.position, transform.position) >= 1) {
+                    if (Vector3.Distance(player.transform.position, transform.position) >= 1)
+                    {
                         agent.SetDestination(player.transform.position);
                     }
 
                     //Stop if close to player
-                    else if(!melee)
+                    else if (!melee)
                     {
                         if (Vector3.Distance(player.transform.position, transform.position) < 5)
                         {
                             agent.SetDestination(transform.position);
                         }
                     }
-                    
+
 
                     //Fire Laser
-                    if (Time.time > laserTimer) {
+                    if (Time.time > laserTimer)
+                    {
                         if (!melee)
                         {
                             Instantiate(laser, laserMuzzle.transform.position, laserMuzzle.transform.rotation);
@@ -94,12 +101,17 @@ public class Enemy : MonoBehaviour {
                         laserTimer = Time.time + laserTime;
                     }
                 }
+
+                else
+                    playerSeen = false;
             }
         }
     }
 
 
     private void OnCollisionStay(Collision collision) {
+
+        playerHit = true;
 
         if (collision.transform.tag == "Player" && Time.time > damageTimer) {
             collision.transform.GetComponent<PlayerAvatar>().takeDamage(damage);

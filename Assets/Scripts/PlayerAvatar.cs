@@ -17,9 +17,9 @@ public class PlayerAvatar : MonoBehaviour {
 
     //Weapons
     public GameObject bullet;
-    private float MGFireTime = 0.075f;
+    private float MGFireTime = 0.3f;
     private float MGFireTimer;
-    public int ammo = 500;
+    public int ammo = 200;
 
     public GameObject fireDamage;
     private float FTFireTime = 0.2f;
