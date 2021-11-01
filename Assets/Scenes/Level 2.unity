@@ -8189,7 +8189,7 @@ Camera:
   m_CullingMask:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_RenderingPath: -1
+  m_RenderingPath: 0
   m_TargetTexture: {fileID: 0}
   m_TargetDisplay: 0
   m_TargetEye: 3
@@ -9865,7 +9865,7 @@ MonoBehaviour:
   playerDead: 0
   levelComplete: 0
   nextLevel: Tile Setup
-  dLight: {fileID: 0}
+  dLight: {fileID: 1083537021}
 --- !u!4 &903623078
 Transform:
   m_ObjectHideFlags: 0
@@ -12349,7 +12349,7 @@ Light:
   serializedVersion: 10
   m_Type: 1
   m_Shape: 0
-  m_Color: {r: 1, g: 0.95686275, b: 0.8392157, a: 1}
+  m_Color: {r: 0, g: 0, b: 0, a: 1}
   m_Intensity: 1
   m_Range: 10
   m_SpotAngle: 30
